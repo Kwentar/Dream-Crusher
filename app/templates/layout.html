@@ -2,6 +2,17 @@
 <title>DC</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <h1>DC</h1>
+<p style="text-align:left;">
+<font size="7pt" color="#CCCCCC">Dream Crusher</font>
+<span style="float:right;">
+    {% if g.user.is_authenticated %}
+            {% if g.user.avatar_url %}
+                <img class="img-circle" src="{{g.user.avatar_url}}"/>
+            {% endif %}
+            <font color="#CCCCCC" size="5pt"> {{ g.user.nickname }}
+            | <a href="{{ url_for('logout') }}">Logout</a></font>
+        {% endif %}
+</span>
+</p>
   {% block body %}{% endblock %}
 </div>

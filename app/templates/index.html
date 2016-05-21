@@ -1,15 +1,4 @@
 {% extends "layout.html" %}
 {% block body %}
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-
-        {{user.nickname}}
-    </ul>
-  {% endif %}
-{% endwith %}
-<h1>Hello World!</h1>
+<h1>{{month}}</h1>
 {% endblock %}

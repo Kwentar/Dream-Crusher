@@ -1,0 +1,2 @@
+1. mongo server
+2. replace in vk app and here all 127.0.0.1 to web address (find out how is possible to automatize this)

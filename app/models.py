@@ -25,10 +25,11 @@ ROLE_USER = 1
 
 
 class User(db.Document, UserMixin):
-    nickname = db.StringField(max_length=255, required=True, unique=True)
+    nickname = db.StringField(max_length=255, required=True)
     email = db.StringField(max_length=255, required=True, unique=True, primary_key=True)
     role = db.IntField(required=True, default=ROLE_USER)
     goals = db.ListField(db.EmbeddedDocumentField('Goal'))
+    avatar_url = db.StringField(required=True, defaul="")
 
     def __unicode__(self):
         return "{} {} {}, goals: {}".format(
