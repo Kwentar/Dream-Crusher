@@ -1,5 +1,6 @@
 import datetime
 from app import db
+from flask_login import UserMixin
 from flask import url_for
 from mongoengine import *
 
@@ -23,9 +24,9 @@ ROLE_ADMIN = 0
 ROLE_USER = 1
 
 
-class User(db.Document):
+class User(db.Document, UserMixin):
     nickname = db.StringField(max_length=255, required=True, unique=True)
-    email = db.StringField(max_length=255, required=True, unique=True)
+    email = db.StringField(max_length=255, required=True, unique=True, primary_key=True)
     role = db.IntField(required=True, default=ROLE_USER)
     goals = db.ListField(db.EmbeddedDocumentField('Goal'))
 
@@ -36,20 +37,8 @@ class User(db.Document):
             "user" if self.role else "admin",
             ",".join([x.title for x in self.goals]))
 
-
-    def is_authenticated(self):
-        return True
-
-
-    def is_active(self):
-        return True
-
-
-    def is_anonymous(self):
-        return False
-
     def get_id(self):
-        return str(self.id)
+        return str(self.email)
 
     meta = {
         'indexes': ['nickname', 'email'],

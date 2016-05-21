@@ -63,3 +63,6 @@ target/
 
 #idea
 .idea/
+
+#inner files
+secrets.py

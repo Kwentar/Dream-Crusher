@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from flask_openid import OpenID
 from flask_login import LoginManager
 from app.forms import LoginForm
 from flask_mongoengine import MongoEngine
@@ -14,7 +13,10 @@ db = MongoEngine(app)
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
-oid = OpenID(app, os.path.join(app.config["BASE_DIR"], 'tmp'))
+
+
+
+# oid = OpenID(app, os.path.join(app.config["BASE_DIR"], 'tmp'))
 
 from app.views import index, login
 
