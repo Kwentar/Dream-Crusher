@@ -1,4 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>{{month}}</h1>
+{% for month in g.user.months%}
+{{month}}
+{% endfor%}
 {% endblock %}
