@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+    <script  type="text/javascript" src="../static/js/dreams_scripts.js"> </script>
+    {% if g.user.is_authenticated %}
+    <div id="table" class="table-editable">
+        <span class="table-add glyphicon">add</span>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Estimated time</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                {% for dream in dreams_list %}
+                    <td contenteditable="true">{{dream.title}}</td>
+                    <td contenteditable="true">{{dream.estimated_time}}</td>
+                    <td>
+                        <span class="table-remove glyphicon glyphicon-remove">remove</span>
+                    </td>
+                    <td>
+                        <span class="table-up glyphicon ">top</span>
+                        <span class="table-down glyphicon ">down</span>
+                    </td>
+                {% endfor %}
+
+            </tr>
+            <!-- This is our clonable table line -->
+            <tr class="hide" style="display:none;">
+                <td contenteditable="true">Untitled</td>
+                <td contenteditable="true">undefined</td>
+                <td>
+                    <span class="table-remove glyphicon glyphicon-remove">remove</span>
+                </td>
+                <td>
+                    <span class="table-up glyphicon glyphicon-arrow-up">top</span>
+                    <span class="table-down glyphicon glyphicon-arrow-down">down</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+        {% for dream in dreams_list %}
+            {{dream}} | <a href="{{ url_for('dreams.dreams_edit')}}">edit</a>
+                      | <a href="{{ url_for('dreams.dreams_delete')}}">delete</a>
+        {% endfor %}
+        <a href="{{ url_for('dreams.dreams_add')}}">add new dream</a>
+    {% endif %}
+{% endblock %}

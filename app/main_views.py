@@ -12,20 +12,20 @@ main_module = Blueprint('main', __name__, template_folder='templates')
 @login_required
 def index():
     current_month = strftime("%B", gmtime())
-    n_month = int(strftime("%m", gmtime()))
-    year = datetime.datetime.today().year
+    current_n_month = datetime.datetime.today().month
+    current_year = datetime.datetime.today().year
     exist = False
     for m in g.user.months:
-        if m.n_month == n_month and m.year == year:
+        if m.n_month == current_n_month and m.year == current_year:
             exist = True
             break;
     if not exist:
-        month = Month(name=current_month, n_month=n_month, year=year)
+        month = Month(name=current_month, n_month=current_n_month, year=current_year)
         month.save()
         g.user.months.append(month)
         g.user.save()
 
-    return render_template('index.html', month=current_month)
+    return render_template('index.html', current_n_month=current_n_month)
 
 
 @main_module.before_request

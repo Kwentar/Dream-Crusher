@@ -6,11 +6,11 @@
 Dream Crusher - The worst teacher you ever had
 <span style="float:right;">
     {% if g.user.is_authenticated %}
-            {% if g.user.avatar_url %}
-                <img class="img-circle" src="{{g.user.avatar_url}}"/>
-            {% endif %}
-            {{ g.user.nickname }}| <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% if g.user.avatar_url %}
+            <img class="img-circle" src="{{g.user.avatar_url}}"/>
         {% endif %}
+        {{ g.user.nickname }}| <a href="{{ url_for('auth.logout') }}">Logout</a>
+    {% endif %}
 </span>
 </p>
   {% block body %}{% endblock %}

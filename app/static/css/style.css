@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 body            {
     text-align: center;
     font-family: Verdana, sans-serif;
@@ -74,4 +76,44 @@ h2              { font-size: 1.2em; }
 
 .auth__social_btn_vk:after {
         background: #45668e url(../images/icons/vk.svg) no-repeat center;
+}
+
+
+
+.table-editable {
+  position: relative;
+
+  .glyphicon {
+    font-size: 20px;
+  }
+}
+
+.table-remove {
+  color: #700;
+  cursor: pointer;
+
+  &:hover {
+    color: #f00;
+  }
+}
+
+.table-up, .table-down {
+  color: #007;
+  cursor: pointer;
+
+  &:hover {
+    color: #00f;
+  }
+}
+
+.table-add {
+  color: #070;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 0;
+
+  &:hover {
+    color: #0b0;
+  }
 }

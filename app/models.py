@@ -4,7 +4,6 @@ from flask_login import UserMixin
 
 
 class Dream(db.Document):
-    created_time = db.DateTimeField(default=datetime.datetime.now, required=True)
     title = db.StringField(max_length=255, required=True)
     estimated_time = db.IntField(min_value=1, required=False)
     current_time = db.IntField(required=True, default=0)
@@ -13,8 +12,6 @@ class Dream(db.Document):
         return self.title
 
     meta = {
-        'allow_inheritance': True,
-        'indexes': ['-created_time'],
         'ordering': ['title']
     }
 
@@ -57,6 +54,14 @@ class User(db.Document, UserMixin):
 
     def get_id(self):
         return str(self.email)
+
+    def get_current_month(self):
+        if self.months:
+            for month in self.months:
+                if month.n_month == datetime.datetime.today().month:
+                    return month
+            return self.months[0]
+        return None
 
     meta = {
         'indexes': ['email'],
