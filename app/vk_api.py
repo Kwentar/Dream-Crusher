@@ -1,8 +1,8 @@
 import json
-import random
 from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import urlopen, http, Request
+
 
 class VkError(Exception):
     def __init__(self, value):
@@ -16,22 +16,8 @@ class VkApi:
 
     def __init__(self, token):
         self.token = token
-        self.default_ua = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-
-    def get_mocked_user_agent(self):
-        try:
-            req = Request(url='http://api.useragent.io/')
-            response = urlopen(req).read()
-            response = json.loads(response.decode('utf-8'))
-            return response['ua']
-        except:
-            try:
-                req = Request(url='http://labs.wis.nu/ua/')
-                response = urlopen(req).read()
-                response = json.loads(response.decode('utf-8'))
-                return response['ua']
-            except:
-                return self.default_ua
+        self.default_ua = \
+            'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
 
     def call_api(self, method, params):
 
@@ -63,4 +49,3 @@ class VkApi:
         except ConnectionAbortedError as err_:
             print("".join(['ERROR ConnectionAbortedError', err_.__str__()]))
         return list()
-

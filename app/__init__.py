@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 from flask_login import LoginManager
 from app.forms import LoginForm
@@ -12,13 +11,13 @@ db = MongoEngine(app)
 
 lm = LoginManager()
 lm.init_app(app)
-lm.login_view = 'login'
+lm.login_view = 'auth.login'
 
+from app.auth_views import auth_module
+from app.main_views import main_module
 
-
-# oid = OpenID(app, os.path.join(app.config["BASE_DIR"], 'tmp'))
-
-from app.views import index, login
+app.register_blueprint(auth_module)
+app.register_blueprint(main_module)
 
 if __name__ == "__main__":
     app.run(debug=True)

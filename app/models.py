@@ -1,11 +1,9 @@
 import datetime
 from app import db
 from flask_login import UserMixin
-from flask import url_for
-from mongoengine import *
 
 
-class Goal(db.Document):
+class Dream(db.Document):
     created_time = db.DateTimeField(default=datetime.datetime.now, required=True)
     title = db.StringField(max_length=255, required=True)
     estimated_time = db.IntField(min_value=1, required=False)
@@ -28,20 +26,20 @@ class User(db.Document, UserMixin):
     nickname = db.StringField(max_length=255, required=True)
     email = db.StringField(max_length=255, required=True, unique=True, primary_key=True)
     role = db.IntField(required=True, default=ROLE_USER)
-    goals = db.ListField(db.EmbeddedDocumentField('Goal'))
+    dreams = db.ListField(db.EmbeddedDocumentField('Dream'))
     avatar_url = db.StringField(required=True, defaul="")
 
     def __unicode__(self):
-        return "{} {} {}, goals: {}".format(
+        return "{} {} {}, Dreams: {}".format(
             self.nickname,
             self.email,
             "user" if self.role else "admin",
-            ",".join([x.title for x in self.goals]))
+            ",".join([x.title for x in self.dreams]))
 
     def get_id(self):
         return str(self.email)
 
     meta = {
-        'indexes': ['nickname', 'email'],
+        'indexes': ['email'],
         'ordering': ['nickname']
     }

@@ -65,4 +65,4 @@ target/
 .idea/
 
 #inner files
-secrets.py
+app/secrets.py
