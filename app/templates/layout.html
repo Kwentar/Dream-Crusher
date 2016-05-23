@@ -1,17 +1,21 @@
 <!doctype html>
-<title>DC</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-<div class=page>
-<p style="text-align:left;">
-Dream Crusher - The worst teacher you ever had
-<span style="float:right;">
-    {% if g.user.is_authenticated %}
-        {% if g.user.avatar_url %}
-            <img class="img-circle" src="{{g.user.avatar_url}}"/>
+<head>
+    <title>DC</title>
+</head>
+<body>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <div class=page>
+    <p style="text-align:left;">
+    Dream Crusher - The worst teacher you ever had
+    <span style="float:right;">
+        {% if g.user.is_authenticated %}
+            {% if g.user.avatar_url %}
+                <img class="img-circle" src="{{g.user.avatar_url}}"/>
+            {% endif %}
+            {{ g.user.nickname }}| <a href="{{ url_for('auth.logout') }}">Logout</a>
         {% endif %}
-        {{ g.user.nickname }}| <a href="{{ url_for('auth.logout') }}">Logout</a>
-    {% endif %}
-</span>
-</p>
-  {% block body %}{% endblock %}
-</div>
+    </span>
+    </p>
+      {% block body %}{% endblock %}
+    </div>
+</body>

@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
+
+    <script  type="text/javascript" src="../static/js/jquery-2.2.4.min.js"> </script>
     <script  type="text/javascript" src="../static/js/dreams_scripts.js"> </script>
     {% if g.user.is_authenticated %}
     <div id="table" class="table-editable">
+        <br/><br/>
         <span class="table-add glyphicon">add</span>
         <table class="table">
             <tr>
@@ -11,24 +14,26 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                {% for dream in dreams_list %}
-                    <td contenteditable="true">{{dream.title}}</td>
-                    <td contenteditable="true">{{dream.estimated_time}}</td>
-                    <td>
-                        <span class="table-remove glyphicon glyphicon-remove">remove</span>
-                    </td>
-                    <td>
-                        <span class="table-up glyphicon ">top</span>
-                        <span class="table-down glyphicon ">down</span>
-                    </td>
-                {% endfor %}
+            {% if dreams_list %}
+                <tr>
+                    {% for dream in dreams_list %}
+                        <td contenteditable="true">{{dream.title}}</td>
+                        <td contenteditable="true">{{dream.estimated_time}}</td>
+                        <td>
+                            <span class="table-remove glyphicon glyphicon-remove">remove</span>
+                        </td>
+                        <td>
+                            <span class="table-up glyphicon ">top</span>
+                            <span class="table-down glyphicon ">down</span>
+                        </td>
+                    {% endfor %}
 
-            </tr>
+                </tr>
+            {% endif %}
             <!-- This is our clonable table line -->
-            <tr class="hide" style="display:none;">
-                <td contenteditable="true">Untitled</td>
-                <td contenteditable="true">undefined</td>
+            <tr class="hide" >
+                <td contenteditable="true">New Dream, new hope</td>
+                <td contenteditable="true">40</td>
                 <td>
                     <span class="table-remove glyphicon glyphicon-remove">remove</span>
                 </td>
