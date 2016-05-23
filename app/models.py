@@ -1,11 +1,13 @@
 import datetime
 from app import db
 from flask_login import UserMixin
+from bson.objectid import ObjectId
 
 
-class Dream(db.Document):
-    title = db.StringField(max_length=255, required=True)
-    estimated_time = db.IntField(min_value=1, required=False)
+class Dream(db.EmbeddedDocument):
+    id_ = db.ObjectIdField(required=True, default=lambda: ObjectId())
+    title = db.StringField(max_length=255, required=True, default="New Dream, New hope")
+    estimated_time = db.IntField(min_value=1, required=True, default=40)
     current_time = db.IntField(required=True, default=0)
 
     def __unicode__(self):
@@ -16,8 +18,9 @@ class Dream(db.Document):
     }
 
 
-class Month(db.Document):
-    name = db.StringField(max_length=255, required=True)
+class Month(db.EmbeddedDocument):
+    id_ = db.ObjectIdField(required=True, default=lambda: ObjectId())
+    title = db.StringField(max_length=255, required=True)
     year = db.IntField(min_value=datetime.datetime.today().year, required=True, default=datetime.datetime.today().year)
     n_month = db.IntField(min_value=1, max_value=12, required=True)
     slogan = db.StringField(max_length=640, required=True, default="I'm so lazy to come up with something")
@@ -29,7 +32,7 @@ class Month(db.Document):
 
     def __unicode__(self):
         return "{} of {} with slogan {}, Dreams: {}".format(
-            self.name,
+            self.title,
             self.year,
             self.slogan,
             ",".join([x.title for x in self.dreams]))
@@ -58,7 +61,8 @@ class User(db.Document, UserMixin):
     def get_current_month(self):
         if self.months:
             for month in self.months:
-                if month.n_month == datetime.datetime.today().month:
+                if month.n_month == datetime.datetime.today().month and \
+                                month.year == datetime.datetime.today().year:
                     return month
             return self.months[0]
         return None

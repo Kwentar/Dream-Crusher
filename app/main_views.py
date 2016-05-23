@@ -18,10 +18,9 @@ def index():
     for m in g.user.months:
         if m.n_month == current_n_month and m.year == current_year:
             exist = True
-            break;
+            break
     if not exist:
-        month = Month(name=current_month, n_month=current_n_month, year=current_year)
-        month.save()
+        month = Month(title=current_month, n_month=current_n_month, year=current_year)
         g.user.months.append(month)
         g.user.save()
 

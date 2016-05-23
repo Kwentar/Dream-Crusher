@@ -1,11 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
     {% if g.user.is_authenticated %}
-        {% for month in g.user.months %}
-            {% if month.n_month == current_n_month %}
-                {{ month }}
-            {% endif %}
-        {% endfor %}
+        {{ g.user.get_current_month()}}
         <a href="{{url_for('dreams.dreams')}}">edit dreams</a>
     {% endif %}
 {% endblock %}

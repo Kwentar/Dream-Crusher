@@ -1,14 +1,13 @@
 from flask import Flask
 from flask_login import LoginManager
-from app.forms import LoginForm
 from flask_mongoengine import MongoEngine
+from flask_wtf import CsrfProtect
 
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
-
+CsrfProtect(app)
 db = MongoEngine(app)
-
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'auth.login'
