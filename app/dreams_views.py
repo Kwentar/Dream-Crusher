@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, url_for, g, request
 from flask_login import login_required, current_user
 from app.forms import DreamsForm
 from app.models import Dream
-from flask_mongoengine.wtf import model_form
 dream_module = Blueprint('dreams', __name__, template_folder='templates')
 
 
@@ -14,8 +13,6 @@ def dreams():
         current_month = g.user.get_current_month()
         if request.method == 'POST' and dreams_form.validate():
             for dream in current_month.dreams:
-                a = dreams_form.dreams
-                b = dreams_form.dreams.data
                 curr_dream = next((x for x in dreams_form.dreams.data if x['id_'] == str(dream.id_)), None)
                 if curr_dream:
                     dream.title = curr_dream['title']

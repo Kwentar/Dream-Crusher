@@ -1,7 +1,21 @@
 {% extends "layout.html" %}
 {% block body %}
     {% if g.user.is_authenticated %}
-        {{ g.user.get_current_month()}}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <a href="{{url_for('dreams.dreams')}}">edit dreams</a>
+        <div>{{ g.user.get_current_month().title}}</div>
+        <div style="margin: auto;">
+            <table id="dream_table">
+            {% for dream in g.user.get_current_month().dreams %}
+                <tr class="{{dream.id_}}">
+                    <td class="index_dream_title">{{dream.title}}</td>
+                    <td class="index_dream_estimated_time">{{dream.estimated_time}}</td>
+                    <td class="index_dream_current_time">{{dream.current_time}}</td>
+                    <td class="index_dream_percent">{{round(dream.current_time / dream.estimated_time * 100, 2)}}%</td>
+                    <td><a href="javascript:add_half_hour('{{dream.id_}}');"> add </a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
     {% endif %}
 {% endblock %}

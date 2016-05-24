@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<script  type="text/javascript" src="../static/js/jquery-2.2.4.min.js"> </script>
-<script  type="text/javascript" src="../static/js/dreams_scripts.js"> </script>
+
 <br/>
 {% if g.user.is_authenticated %}
+<p>Your dreams for {{g.user.get_current_month().title}}:</p>
     <form action="" method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         {% for dream in form.dreams %}

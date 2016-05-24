@@ -14,9 +14,6 @@ h2              { font-size: 1.2em; }
                   padding: 0.8em; background: #bcd; }
 
 
-.img-circle {
-    border-radius: 50%;
-}
 
 .auth {
     top: 0;
@@ -83,41 +80,32 @@ h2              { font-size: 1.2em; }
     position: relative;
 }
 
-.glyphicon {
-font-size: 20px;
+#user_info_layout {
+    color:green;
+    float: right;
+    display: table;
+}
+#dream_header_layout {
+    color: red;
+    display: table-cell;
+    float: left;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#header {
+    width: 90%;
+    height: 50px;
+    display: table;
+    padding: 1em;
 }
 
 
-.table-remove {
-    color: #700;
-    cursor: pointer;
+#img-circle {
+    border-radius: 50%;
 }
 
-.table-remove:hover {
-    color: #f00;
-  }
-
-
-.table-up, .table-down {
-    color: #007;
-    cursor: pointer;
+.avatar {
+    display: table-cell;
+    vertical-align: middle;
 }
-.table-up:hover, .table-down:hover {
-    color: #00f;
-  }
-
-
-.table-add {
-    color: #070;
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 0;
-}
-.table-add:hover {
-    color: #0b0;
-  }
-.hide {
-    display:none;
-}
-
