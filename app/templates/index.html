@@ -11,7 +11,7 @@
                     <td class="index_dream_title">{{dream.title}}</td>
                     <td class="index_dream_estimated_time">{{dream.estimated_time}}</td>
                     <td class="index_dream_current_time">{{dream.current_time}}</td>
-                    <td class="index_dream_percent">{{round(dream.current_time / dream.estimated_time * 100, 2)}}%</td>
+                    <td class="index_dream_percent">{{dream.current_time / dream.estimated_time * 100, 2}}%</td>
                     <td><a href="javascript:add_half_hour('{{dream.id_}}');"> add </a></td>
                 </tr>
             {% endfor %}
