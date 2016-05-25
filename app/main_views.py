@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, g, request, jsonify
 from time import gmtime, strftime
 from flask_login import login_required, current_user
-from app.models import Month, User
+from app.models import Month, DreamDay
 import datetime
 
 
@@ -31,8 +31,16 @@ def index():
 @login_required
 def add_half_hour():
     dream_id = request.form['dream_id']
-    curr_dream = next(x for x in g.user.get_current_month().dreams if str(x.id_) == dream_id)
+    curr_month = g.user.get_current_month()
+    curr_dream = next(x for x in curr_month.dreams if str(x.id_) == dream_id)
     curr_dream.current_time += 1
+    curr_dream_day = next((x for x in curr_month.dream_days if
+                          x.number == datetime.datetime.today().day and x.dream_id == curr_dream.id_), None)
+    if curr_dream_day:
+        curr_dream_day.current_time += 1
+    else:
+        dream_day = DreamDay(dream_id=dream_id)
+        curr_month.dream_days.append(dream_day)
     g.user.save()
     return jsonify({'id_': dream_id})
 

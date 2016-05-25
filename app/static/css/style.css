@@ -109,3 +109,11 @@ h2              { font-size: 1.2em; }
     display: table-cell;
     vertical-align: middle;
 }
+#dream_table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+}
+#dream_table, .table_line, .table_row {
+    border: 1px solid dodgerblue;
+}
