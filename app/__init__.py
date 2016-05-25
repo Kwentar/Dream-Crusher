@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_mongoengine import MongoEngine
 from flask_wtf import CsrfProtect
@@ -20,6 +20,10 @@ app.register_blueprint(auth_module)
 app.register_blueprint(dream_module)
 app.register_blueprint(main_module)
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
