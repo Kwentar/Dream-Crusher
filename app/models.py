@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 class Dream(db.EmbeddedDocument):
     id_ = db.ObjectIdField(required=True, default=lambda: ObjectId())
     title = db.StringField(max_length=255, required=True, default="New Dream, New hope")
-    estimated_time = db.IntField(min_value=1, required=True, default=40)
+    estimated_time = db.IntField(min_value=1, required=True, default=50)
     current_time = db.IntField(required=True, default=0)
 
     def get_percent(self):

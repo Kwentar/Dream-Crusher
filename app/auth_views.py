@@ -4,7 +4,7 @@ Auth module, contains of login, logout and social network authorization modules,
 from flask import request, redirect, render_template, url_for, g, session, Blueprint
 from flask_login import login_user, logout_user, current_user
 from app import lm
-from app.models import User, ROLE_USER
+from app.models import User, Dream, ROLE_USER
 from app.vk_api import VkApi
 from app.secrets import vk_client_id, vk_secret_key
 from urllib.request import urlopen, Request

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, g, request, jsonify
 from time import gmtime, strftime
 from flask_login import login_required, current_user
-from app.models import Month, DreamDay
+from app.models import Month, DreamDay, Dream
 import datetime
 
 
@@ -21,6 +21,9 @@ def index():
             break
     if not exist:
         month = Month(title=current_month, n_month=current_n_month, year=current_year)
+        month.dreams.append(Dream(title="be better than yesterday"))
+        month.dreams.append(Dream(title="collect all pokemons"))
+        month.dreams.append(Dream(title="learn to fly"))
         g.user.months.append(month)
         g.user.save()
 
