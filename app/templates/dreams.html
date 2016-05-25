@@ -1,21 +1,20 @@
-{% extends "layout.html" %}
-{% block body %}
-
-
+# extends "layout.html"
+# block body
 <br/>
-{% if g.user.is_authenticated %}
+# if g.user.is_authenticated
 <p>Your dreams for {{g.user.get_current_month().title}}:</p>
     <form action="" method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        {% for dream in form.dreams %}
+        # for dream in form.dreams
             {{dream.id_}}{{dream.title.label}}: {{dream.title}} | {{dream.estimated_time.label}}: {{dream.estimated_time}} <br/>
-        {% endfor %}
+        # endfor
         <p><input type="submit" value="Save"></p>
-        {% for error in form.errors %}
+        # for error in form.errors
             <span style="color: red;">[{{error}}]</span>
-        {% endfor %}<br>
+        # endfor
+        <br>
     </form>
-{% endif %}
-{% endblock %}
+# endif
+# endblock
 
 

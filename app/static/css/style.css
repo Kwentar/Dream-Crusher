@@ -1,8 +1,18 @@
+:root {
+  --bg-color: #171717;
+  --text-color: #AAAAB2;
+  --accent-color: #EB6454;
+  --title-color: #FFFFFA;
+}
 
+/*bg: #232128
+text: #AAAAB2
+titles: #FFFFFA
+accent: #EB6454*/
 body            {
     text-align: center;
     font-family: Verdana, sans-serif;
-    background: #fff;
+    background: var(--bg-color);
     width: 100%;
     margin: auto;
 }
@@ -10,9 +20,18 @@ a, h1, h2       { color: #383A36; }
 h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h2              { font-size: 1.2em; }
 
-.page           { margin: 2em auto; width: 60%;
-                  padding: 0.8em; }
+#header {
+    width: 100%;
+    height: 50px;
+    display: table;
+    padding: 1em;
+    background: var(--title-color);
+}
 
+.page           { margin: 2em auto; width: 60%;
+                  padding: 0.8em;
+                  color: var(--text-color);
+                  }
 
 
 .auth {
@@ -93,14 +112,6 @@ h2              { font-size: 1.2em; }
     height: 100%;
 }
 
-#header {
-    width: 90%;
-    height: 50px;
-    display: table;
-    padding: 1em;
-}
-
-
 #img-circle {
     border-radius: 50%;
 }
@@ -115,7 +126,8 @@ h2              { font-size: 1.2em; }
     margin: auto;
 }
 #dream_table, .table_line, .table_row {
-    border: 1px solid dodgerblue;
+    border: 1px solid gray;
+    width:100%;
 }
 
 #body_404 {
@@ -131,4 +143,21 @@ h2              { font-size: 1.2em; }
 }
 #img_404 {
     padding: 0 0em 5em 0em;
+}
+
+.week_table {
+    display: inline-block;
+    border-collapse: collapse;
+
+}
+.week_num {
+    display: inline-block;
+    margin: 10px;
+    width: 40%;
+}
+
+.add_link {
+    text-decoration: none;
+    background: var(--accent-color);
+    color: white;
 }

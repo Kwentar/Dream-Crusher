@@ -7,19 +7,20 @@
 </head>
 <body>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-    <div class=page>
-        <div id="header">
+     <div id="header">
             <span class="avatar">Dream Crusher - The worst teacher you ever had</span>
             <span class="avatar">
-                {% if g.user.is_authenticated %}
-                    {% if g.user.avatar_url %}
+                # if g.user.is_authenticated
+                    #if g.user.avatar_url
                         <img id="img-circle" src="{{g.user.avatar_url}}"/>
-                    {% endif %}
+                    # endif
                     {{ g.user.nickname }}| <a href="{{ url_for('auth.logout') }}">Logout</a>
-                {% endif %}
+                # endif
             </span>
         </div>
-          {% block body %}{% endblock %}
+    <div class=page>
+          # block body
+          # endblock
     </div>
 </body>
 </html>

@@ -4,7 +4,7 @@ from flask_mongoengine import MongoEngine
 from flask_wtf import CsrfProtect
 
 app = Flask(__name__)
-
+app.jinja_env.line_statement_prefix = '#'
 app.config.from_pyfile('config.py')
 CsrfProtect(app)
 db = MongoEngine(app)

@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
-{% block body %}
-    {% if g.user.is_authenticated %}
+#extends "layout.html"
+# block body
+    # if g.user.is_authenticated
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <a href="{{url_for('dreams.dreams')}}">edit dreams</a>
         <div>{{ g.user.get_current_month().title}}</div>
@@ -8,33 +8,35 @@
         <div id="week_number">{{ g.user.get_current_month().get_current_week()}}</div>
         <div style="margin: auto;">
             <table id="dream_table" border="1" cellpadding="5">
-            {% for dream in g.user.get_current_month().dreams %}
+            # for dream in g.user.get_current_month().dreams
                 <tr class="table_line {{dream.id_}}">
                     <td class="table_row index_dream_title">{{dream.title}}</td>
                     <td class="table_row index_dream_estimated_time">{{dream.estimated_time}}</td>
                     <td class="table_row index_dream_current_time">{{dream.current_time}}</td>
                     <td class="table_row index_dream_percent">{{dream.get_percent()}}%</td>
-                    <!--<td class="table_row"><a href="javascript:add_half_hour('{{dream.id_}}');"> add </a></td>-->
                 </tr>
-            {% endfor %}
+            # endfor
             </table>
 
-
-            {% for week_num in range(4) %}
-                <div> Week {{week_num}}:</div>
-                <table id="{{'dream_table_week_' + week_num.__str__()}}" border="1" cellpadding="5">
-                {% for dream in g.user.get_current_month().dreams %}
-                    <tr class="table_line {{dream.id_}}">
-                        <td class="table_row index_dream_title">{{dream.title}}</td>
-                        <td class="table_row index_dream_current_time">{{g.user.get_current_month().get_time_dream_for_week(dream, week_num)}}</td>
-                        {% if g.user.get_current_month().get_current_week() == week_num %}
-                            <td class="table_row"><a href="javascript:add_half_hour('{{dream.id_}}');"> add </a></td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-                </table>
-            {% endfor %}
-
+            # for week_num in range(4)
+                # if week_num % 2 == 0
+                <br/>
+                # endif
+                <div class="week_num">
+                    Week {{week_num}}:<br>
+                    <table class="week_table" id="{{'dream_table_week_' + week_num.__str__()}}">
+                    # for dream in g.user.get_current_month().dreams
+                        <tr class="table_line {{dream.id_}}">
+                            <td class="table_row index_dream_title">{{dream.title}}</td>
+                            <td class="table_row index_dream_current_time">{{g.user.get_current_month().get_time_dream_for_week(dream, week_num)}}</td>
+                            # if g.user.get_current_month().get_current_week() == week_num
+                                <td class="table_row"><a class="add_link" href="javascript:add_half_hour('{{dream.id_}}');"> + </a></td>
+                            # endif
+                        </tr>
+                    # endfor
+                    </table>
+                </div>
+            # endfor
         </div>
-    {% endif %}
-{% endblock %}
+    # endif
+# endblock
