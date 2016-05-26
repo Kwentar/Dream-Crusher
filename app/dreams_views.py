@@ -34,24 +34,6 @@ def dreams():
     return redirect(url_for('main.index'))
 
 
-@dream_module.route('/dreams/edit')
-@login_required
-def dreams_edit():
-    return """edit <a href="{{ url_for('dreams.dreams')}}">back</a>"""
-
-
-@dream_module.route('/dreams/remove')
-@login_required
-def dreams_remove():
-    return """remove <a href="{{ url_for('dreams.dreams')}}">back</a>"""
-
-
-@dream_module.route('/dreams/add')
-@login_required
-def dreams_add():
-    return """add <a href="{{url_for('dreams.dreams')}}">back</a>"""
-
-
 @dream_module.before_request
 def before_request():
     g.user = current_user
