@@ -2,7 +2,6 @@
 # block body
     # if g.user.is_authenticated
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <a href="{{url_for('dreams.dreams')}}">edit dreams</a>
         <div>{{ g.user.get_current_month().title}}</div>
         <div>{{ g.user.get_current_month().slogan}}</div>
         <div id="week_number">{{ g.user.get_current_month().get_current_week()}}</div>

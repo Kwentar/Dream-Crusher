@@ -12,8 +12,8 @@ accent: #EB6454*/
 body            {
     text-align: center;
     font-family: Verdana, sans-serif;
-    background: var(--bg-color);
     width: 100%;
+    height: 100%;
     margin: auto;
 }
 a, h1, h2       { color: #383A36; }
@@ -23,15 +23,64 @@ h2              { font-size: 1.2em; }
 #header {
     width: 100%;
     height: 50px;
-    display: table;
-    padding: 1em;
-    background: var(--title-color);
+    background: var(--bg-color);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--text-color);
 }
-
-.page           { margin: 2em auto; width: 60%;
-                  padding: 0.8em;
-                  color: var(--text-color);
-                  }
+.description {
+    float: left;
+    vertical-align: middle;
+    margin-left: 50px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 50px;
+    float: right;
+}
+.avatar {
+    vertical-align: middle;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+.footer__desc {
+    vertical-align: bottom;
+    padding-top: 20px;
+    font-size: 0.7em;
+}
+.page { margin: 2em auto; width: 60%;
+    padding: 0.8em;
+    color: var(--text-color);
+    height: 100%;
+    padding-bottom: 60px;
+    color: var(--bg-color);
+}
 
 
 .auth {
@@ -114,12 +163,11 @@ h2              { font-size: 1.2em; }
 
 #img-circle {
     border-radius: 50%;
+    width:40px;
+    height:40px;
 }
 
-.avatar {
-    display: table-cell;
-    vertical-align: middle;
-}
+
 #dream_table {
     border-collapse: collapse;
     width: 90%;
