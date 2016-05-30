@@ -7,8 +7,12 @@
 </head>
 <body>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="../static/images/icons/favicon.png">
     <div id="header">
-        <span class="description">Dream Crusher - The worst teacher you ever had</span>
+        <div class="description">
+            <img class="description__logo_image" src="../static/images/icons/logo.png">
+            <div class="description__text">Dream Crusher - The worst teacher you ever had</div>
+        </div>
         <div class="dropdown">
             <div class="avatar">
                 # if g.user.is_authenticated

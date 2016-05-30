@@ -3,39 +3,49 @@
     # if g.user.is_authenticated
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <div>{{ g.user.get_current_month().title}}</div>
-        <div>{{ g.user.get_current_month().slogan}}</div>
-        <div id="week_number">{{ g.user.get_current_month().get_current_week()}}</div>
-        <div style="margin: auto;">
-            <table id="dream_table" border="1" cellpadding="5">
-            # for dream in g.user.get_current_month().dreams
-                <tr class="table_line {{dream.id_}}">
-                    <td class="table_row index_dream_title">{{dream.title}}</td>
-                    <td class="table_row index_dream_estimated_time">{{dream.estimated_time}}</td>
-                    <td class="table_row index_dream_current_time">{{dream.current_time}}</td>
-                    <td class="table_row index_dream_percent">{{dream.get_percent()}}%</td>
-                </tr>
-            # endfor
-            </table>
+        <input id="slogan_text" type="text" value="{{ g.user.get_current_month().slogan}}"/>
+        <table id="dream_table" border="1" cellpadding="5">
+        # for dream in g.user.get_current_month().dreams
+            <tr class="table_line {{dream.id_}}">
+                <td class="table_row index_dream_title">{{dream.title}}</td>
+                <td class="table_row index_dream_estimated_time">{{dream.estimated_time}}</td>
+                <td class="table_row index_dream_current_time">{{dream.current_time}}</td>
+                <td class="table_row index_dream_percent">{{dream.get_percent()}}%</td>
+            </tr>
+        # endfor
+        </table>
 
-            # for week_num in range(4)
-                # if week_num % 2 == 0
-                <br/>
-                # endif
-                <div class="week_num">
-                    Week {{week_num}}:<br>
-                    <table class="week_table" id="{{'dream_table_week_' + week_num.__str__()}}">
-                    # for dream in g.user.get_current_month().dreams
-                        <tr class="table_line {{dream.id_}}">
-                            <td class="table_row index_dream_title">{{dream.title}}</td>
-                            <td class="table_row index_dream_current_time">{{g.user.get_current_month().get_time_dream_for_week(dream, week_num)}}</td>
-                            # if g.user.get_current_month().get_current_week() == week_num
-                                <td class="table_row"><a class="add_link" href="javascript:add_half_hour('{{dream.id_}}');"> + </a></td>
-                            # endif
-                        </tr>
-                    # endfor
-                    </table>
-                </div>
+        # for week_num in range(4)
+            # if week_num % 2 == 0
+            <br/>
+            # endif
+            <div class="week_num">
+                Week {{week_num + 1}}:<br>
+                <table class="week_table" id="{{'dream_table_week_' + week_num.__str__()}}">
+                # for dream in g.user.get_current_month().dreams
+                    <tr class="table_line {{dream.id_}}">
+                        <td class="table_row index_dream_title">{{dream.title}}</td>
+                        <td class="table_row index_dream_current_time">{{g.user.get_current_month().get_time_dream_for_week(dream, week_num)}}</td>
+                        # if g.user.get_current_month().get_current_week() == week_num
+                            <td class="table_row"><a class="add_link" href="javascript:add_half_hour('{{dream.id_}}');"> + </a></td>
+                        # endif
+                    </tr>
+                # endfor
+                </table>
+            </div>
+        # endfor
+         <div>Days:</div> <br/>
+         <table id="day_table" border="1" cellpadding="5">
+            <tr class="table_line {{dream.id_}}">
+            # for day in g.user.get_current_month().get_days_for_month()
+                <td class="{{'weekend' if day.is_weekend else 'workday'}}">{{day.day}}</td>
             # endfor
-        </div>
+            </tr>
+              <tr class="table_line {{dream.id_}}">
+            # for day in g.user.get_current_month().get_days_for_month()
+                <td>{{day.day_time}}</td>
+            # endfor
+            </tr>
+        </table>
     # endif
 # endblock

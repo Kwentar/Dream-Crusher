@@ -1,31 +1,28 @@
 $(document).ready(function() {
-
-  /*$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};*/
-  $('.add_b').click(function test() {
-        alert(this.id);
-
-    });
-    $('.table-add').click(function () {
-        var $rowCount = $TABLE.find('tr').length;
-        if($rowCount < 5) {
-            var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-            $TABLE.find('table').append($clone);
+    var $SLOGAN_EDIT = $('#slogan_text');
+    $SLOGAN_EDIT.focusout(function() {
+    var CSRF_token = $('meta[name=csrf-token]').attr('content');
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", CSRF_token)
+            }
         }
-        else {
-            alert("You can have only 3 dreams for one month, sorry =(")
-        }
+    })
+     $.ajax({
+            url: '/change_slogan',
+            data: {'slogan_value': $SLOGAN_EDIT.val()},
+            type: 'POST',
+            success: function(response) {
+                 console.log(response);
+            },
+            error: function(error) {
+                 console.log(error);
+
+            }
+        });
     });
 
-    $(function() {
-    $('a#calculate').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
-        a: 10
-      }, function(data) {
-        $("#result").text(data.result);
-      });
-      return false;
-    });
-  });
 });
 
 function add_half_hour(dream_id) {

@@ -3,6 +3,7 @@
   --text-color: #AAAAB2;
   --accent-color: #EB6454;
   --title-color: #FFFFFA;
+  --header-size: 50px;
 }
 
 /*bg: #232128
@@ -22,7 +23,7 @@ h2              { font-size: 1.2em; }
 
 #header {
     width: 100%;
-    height: 50px;
+    height: var(--header-size);
     background: var(--bg-color);
     padding-top: 10px;
     padding-bottom: 10px;
@@ -30,8 +31,17 @@ h2              { font-size: 1.2em; }
 }
 .description {
     float: left;
-    vertical-align: middle;
     margin-left: 50px;
+}
+.description__text {
+    float: left;
+    vertical-align: middle;
+    padding:20px;
+}
+.description__logo_image {
+    float: left;
+    width: 40px;
+    height: 40px;
 }
 .dropdown {
     position: relative;
@@ -47,7 +57,7 @@ h2              { font-size: 1.2em; }
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     right: 0;
 }
@@ -57,6 +67,10 @@ h2              { font-size: 1.2em; }
     text-decoration: none;
     display: block;
 }
+.dropdown-content a:hover {
+    background-color: var(--accent-color);
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -168,6 +182,7 @@ h2              { font-size: 1.2em; }
 }
 
 
+
 #dream_table {
     border-collapse: collapse;
     width: 90%;
@@ -178,6 +193,15 @@ h2              { font-size: 1.2em; }
     width:100%;
 }
 
+#day_table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+
+}
+.weekend {
+    background:var(--accent-color);
+}
 #body_404 {
     background: black;
 }
@@ -208,4 +232,26 @@ h2              { font-size: 1.2em; }
     text-decoration: none;
     background: var(--accent-color);
     color: white;
+}
+
+input[type="text"] {
+    margin: 0px 10px 10px 0px;
+
+    font-family: sans-serif;
+    font-size: 16px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+transition: border 0.3s;
+}
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: solid 2px #969696;
+}
+#slogan_text {
+    width: 60%;
+    text-align: center;
 }

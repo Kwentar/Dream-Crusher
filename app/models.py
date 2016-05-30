@@ -36,6 +36,13 @@ class DreamDay(db.EmbeddedDocument):
     }
 
 
+class TableDay:
+    def __init__(self):
+        self.day = 0
+        self.is_weekend = False
+        self.day_time = 0
+
+
 class Month(db.EmbeddedDocument):
     id_ = db.ObjectIdField(required=True, default=lambda: ObjectId())
     title = db.StringField(max_length=255, required=True)
@@ -73,6 +80,18 @@ class Month(db.EmbeddedDocument):
             return week_index
         return -1
 
+    def get_days_for_month(self, number=28):
+        days = []
+        first_monday = self.get_first_monday()
+        for day_number in range(number):
+            day = TableDay()
+            day_date = (first_monday + datetime.timedelta(days=day_number))
+            day.day = day_date.day
+            day.day_time = self.get_all_time_for_day(day.day)
+            day.is_weekend = day_date.weekday() == 5 or day_date.weekday() == 6
+            days.append(day)
+        return days
+
     def get_time_dream_for_week(self, dream, week_index):
         week_time = 0
         for dream_day in self.dream_days:
@@ -80,6 +99,12 @@ class Month(db.EmbeddedDocument):
                 week_time += dream_day.current_time
         return week_time
 
+    def get_all_time_for_day(self, day):
+        day_time = 0
+        for dream_day in self.dream_days:
+            if dream_day.number == day:
+                day_time += dream_day.current_time
+        return day_time
 
 ROLE_ADMIN = 0
 ROLE_USER = 1

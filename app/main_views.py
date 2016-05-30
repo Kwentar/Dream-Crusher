@@ -48,6 +48,17 @@ def add_half_hour():
     return jsonify({'id_': dream_id})
 
 
+@main_module.route('/change_slogan', methods=['POST'])
+@login_required
+def change_slogan():
+    new_slogan = request.form['slogan_value']
+    curr_month = g.user.get_current_month()
+    if curr_month.slogan != new_slogan:
+        curr_month.slogan = new_slogan
+        g.user.save()
+    return jsonify({'slogan_value': new_slogan})
+
+
 @main_module.before_request
 def before_request():
     g.user = current_user
