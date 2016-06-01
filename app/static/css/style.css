@@ -220,12 +220,13 @@ h2              { font-size: 1.2em; }
 .week_table {
     display: inline-block;
     border-collapse: collapse;
+    width: 100%;
 
 }
 .week_num {
     display: inline-block;
     margin: 10px;
-    width: 40%;
+    width: 45%;
 }
 
 .add_link {
