@@ -1,7 +1,7 @@
 import os
 
 WTF_CSRF_ENABLED = True
-SECRET_KEY = "KeepThisInRlyS3cr3t"
+SECRET_KEY = "KeepThisInRlyS3cr3t22"
 MONGODB_SETTINGS = {'DB': "dream-crusher"}
 MONGO_URI = 'mongodb://mongo-user:BHDYyA2G@ds038379.mlab.com:38379/dream-crusher'
 
