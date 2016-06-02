@@ -46,7 +46,7 @@ def try_vk_auth():
     try get code from vk.com for authorization
     :return: redirect to vk_auth page with code or error
     """
-    vk_auth_page = 'http://dream-crusher.azurewebsites.net/vk_auth'
+    vk_auth_page = 'http://dream-crusher.herokuapp.com/vk_auth'
     req_url = 'https://oauth.vk.com/authorize?client_id=' + vk_client_id + \
               '&scope=email&redirect_uri=' + vk_auth_page + \
               '&response_type=code&v=5.52'
@@ -59,7 +59,7 @@ def vk_auth():
     Authorization using vk OAuth, getting user email, first name, last name and avatar
     :return: redirect to index page if all is ok else redirect to login page again
     """
-    vk_auth_page = 'http://dream-crusher.azurewebsites.net/vk_auth'
+    vk_auth_page = 'http://dream-crusher.herokuapp.com/vk_auth'
     code = request.args.get('code', '')
     access_token_url = 'https://oauth.vk.com/access_token?client_id=' + vk_client_id + \
                        '&client_secret=' + vk_secret_key + '&code=' + code + '&redirect_uri=' + vk_auth_page
