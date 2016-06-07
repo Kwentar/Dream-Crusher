@@ -4,15 +4,9 @@ from flask_mongoengine import MongoEngine
 from flask_wtf import CsrfProtect
 
 app = Flask(__name__)
+
 app.jinja_env.line_statement_prefix = '#'
 app.config.from_pyfile('config.py')
-app.config['MONGODB_SETTINGS'] = {
-    'db': 'dream-crusher',
-    'host': 'ds038379.mlab.com',
-    'port': 38379,
-    'username': 'mongo-user',
-    'password': 'BHDYyA2G'
-}
 CsrfProtect(app)
 db = MongoEngine(app)
 lm = LoginManager()

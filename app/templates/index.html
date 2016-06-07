@@ -4,6 +4,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <div>{{ g.user.get_current_month().title}}</div>
         <input id="slogan_text" type="text" value="{{ g.user.get_current_month().slogan}}"/>
+        <div id="week_number">{{g.user.get_current_month().get_current_week()}}</div>
         <table id="dream_table" border="1" cellpadding="5">
         # for dream in g.user.get_current_month().dreams
             <tr class="table_line {{dream.id_}}">
@@ -36,14 +37,14 @@
         # endfor
          <div>Days:</div> <br/>
          <table id="day_table" border="1" cellpadding="5">
-            <tr class="table_line {{dream.id_}}">
+            <tr class="table_line day_table_header">
             # for day in g.user.get_current_month().get_days_for_month()
                 <td class="{{'weekend' if day.is_weekend else 'workday'}}">{{day.day}}</td>
             # endfor
             </tr>
-              <tr class="table_line {{dream.id_}}">
+              <tr class="table_line day_table_days">
             # for day in g.user.get_current_month().get_days_for_month()
-                <td>{{day.day_time}}</td>
+                <td class="day_table_{{day.day}}">{{day.day_time}}</td>
             # endfor
             </tr>
         </table>

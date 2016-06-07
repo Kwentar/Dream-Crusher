@@ -228,7 +228,9 @@ h2              { font-size: 1.2em; }
     margin: 10px;
     width: 45%;
 }
-
+#week_number {
+    display: none;
+}
 .add_link {
     text-decoration: none;
     background: var(--accent-color);

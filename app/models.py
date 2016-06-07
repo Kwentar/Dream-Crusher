@@ -75,7 +75,7 @@ class Month(db.EmbeddedDocument):
         today = datetime.date(self.year, self.n_month, day)
         first_monday = self.get_first_monday()
         delta = (today - first_monday).days
-        if delta > 0:
+        if delta >= 0:
             week_index = delta // 7
             return week_index
         return -1

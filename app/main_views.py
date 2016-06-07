@@ -45,7 +45,7 @@ def add_half_hour():
         dream_day = DreamDay(dream_id=dream_id)
         curr_month.dream_days.append(dream_day)
     g.user.save()
-    return jsonify({'id_': dream_id})
+    return jsonify({'id_': dream_id, 'day_number': datetime.datetime.today().day})
 
 
 @main_module.route('/change_slogan', methods=['POST'])

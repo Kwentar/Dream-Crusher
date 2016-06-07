@@ -4,7 +4,7 @@ Auth module, contains of login, logout and social network authorization modules,
 from flask import request, redirect, render_template, url_for, g, session, Blueprint
 from flask_login import login_user, logout_user, current_user
 from app import lm
-from app.models import User, Dream, ROLE_USER
+from app.models import User, ROLE_USER
 from app.vk_api import VkApi
 from app.secrets import vk_client_id, vk_secret_key
 from urllib.request import urlopen, Request
@@ -46,7 +46,7 @@ def try_vk_auth():
     try get code from vk.com for authorization
     :return: redirect to vk_auth page with code or error
     """
-    vk_auth_page = 'http://dream-crusher.herokuapp.com/vk_auth'
+    vk_auth_page = url_for('auth.vk_auth', _external=True)
     req_url = 'https://oauth.vk.com/authorize?client_id=' + vk_client_id + \
               '&scope=email&redirect_uri=' + vk_auth_page + \
               '&response_type=code&v=5.52'
@@ -59,7 +59,7 @@ def vk_auth():
     Authorization using vk OAuth, getting user email, first name, last name and avatar
     :return: redirect to index page if all is ok else redirect to login page again
     """
-    vk_auth_page = 'http://dream-crusher.herokuapp.com/vk_auth'
+    vk_auth_page = url_for('auth.vk_auth', _external=True)
     code = request.args.get('code', '')
     access_token_url = 'https://oauth.vk.com/access_token?client_id=' + vk_client_id + \
                        '&client_secret=' + vk_secret_key + '&code=' + code + '&redirect_uri=' + vk_auth_page
