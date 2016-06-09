@@ -16,10 +16,12 @@ lm.login_view = 'auth.login'
 from app.auth_views import auth_module
 from app.main_views import main_module
 from app.dreams_views import dream_module
+from app.admin_view import admin_module
 
 app.register_blueprint(auth_module)
 app.register_blueprint(dream_module)
 app.register_blueprint(main_module)
+app.register_blueprint(admin_module)
 
 
 @app.errorhandler(404)
