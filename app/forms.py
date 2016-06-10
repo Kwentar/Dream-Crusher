@@ -13,3 +13,8 @@ class DreamForm(Form):
 
 class DreamsForm(Form):
     dreams = FieldList(FormField(DreamForm), min_entries=3)
+
+
+class SendSMSForm(Form):
+    sms_text = StringField('Text of sms', [validators.required(), validators.length(max=70)])
+

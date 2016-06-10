@@ -2,7 +2,22 @@
 # block body
 <body>
     <div>Сообщение:</div>
-    <input type="text">
-    <input type="submit" value="Отправить">
+    <form method="post" action="">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        {{form.sms_text.label}}: {{form.sms_text}}
+        <input type="submit" value="Отправить">
+        # for error in form.errors
+            <span style="color: red;">[{{error}}]</span>
+        # endfor
+    </form>
+    # with messages = get_flashed_messages()
+        # if messages
+            <ul class=flashes>
+            # for message in messages
+                <li>{{ message }}</li>
+            # endfor
+            </ul>
+        # endif
+    # endwith
 </body>
 # endblock

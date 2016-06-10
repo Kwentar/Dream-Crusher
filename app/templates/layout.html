@@ -26,6 +26,9 @@
             <div class="dropdown-content">
                 <a href="{{ url_for('dreams.dreams') }}">Edit dreams</a>
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
+                # if g.user.is_authenticated and g.user.role == 0
+                <a href="{{ url_for('admin.admin') }}">Admin panel</a>
+                # endif
             </div>
         </div>
     </div>
