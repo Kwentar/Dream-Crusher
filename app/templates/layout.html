@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>DC</title>
-    <script  type="text/javascript" src="../static/js/jquery-2.2.4.min.js"> </script>
-    <script  type="text/javascript" src="../static/js/dreams_scripts.js"> </script>
+
 </head>
 <body>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/chartist.css') }}">
     <link rel="icon" href="../static/images/icons/favicon.png">
     <div id="header">
         <div class="description">
@@ -25,8 +25,9 @@
 
             <div class="dropdown-content">
                 <a href="{{ url_for('dreams.dreams') }}">Edit dreams</a>
+                <a href="{{ url_for('statistic.statistic') }}">Statistics</a>
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
-                # if g.user.is_authenticated and g.user.role == 0
+                # if g.user.is_authenticated and g.user.is_admin()
                 <a href="{{ url_for('admin.admin') }}">Admin panel</a>
                 # endif
             </div>
@@ -41,5 +42,8 @@
             ed9m, 2016
         </div>
     </div>
+    <script  type="text/javascript" src="../static/js/jquery-2.2.4.min.js"> </script>
+    <script  type="text/javascript" src="../static/js/chartist.min.js"> </script>
+    <script  type="text/javascript" src="../static/js/dreams_scripts.js"> </script>
 </body>
 </html>

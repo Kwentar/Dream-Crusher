@@ -136,6 +136,9 @@ class User(db.Document, UserMixin):
             return self.months[0]
         return None
 
+    def is_admin(self):
+        return self.role == ROLE_ADMIN
+
     meta = {
         'indexes': ['email'],
         'ordering': ['nickname']
