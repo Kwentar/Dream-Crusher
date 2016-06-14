@@ -8,34 +8,37 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/chartist.css') }}">
     <link rel="icon" href="../static/images/icons/favicon.png">
-    <div id="header">
-        <div class="description">
-            <img class="description__logo_image" src="../static/images/icons/logo.png">
-            <div class="description__text">Dream Crusher - The worst teacher you ever had</div>
-        </div>
-        <div class="dropdown">
-            <div class="avatar">
-                # if g.user.is_authenticated
-                    #if g.user.avatar_url
-                        <img id="img-circle" src="{{g.user.avatar_url}}"/>
+    <div class="wrapper">
+        <div id="header">
+            <div class="description">
+                <img class="description__logo_image" src="../static/images/icons/logo.png">
+                <div class="description__text">Dream Crusher - The worst teacher you ever had</div>
+            </div>
+            <div class="dropdown">
+                <div class="avatar">
+                    # if g.user.is_authenticated
+                        #if g.user.avatar_url
+                            <img id="img-circle" src="{{g.user.avatar_url}}"/>
+                        # endif
+                        {{ g.user.nickname }}
                     # endif
-                    {{ g.user.nickname }}
-                # endif
-            </div>
+                </div>
 
-            <div class="dropdown-content">
-                <a href="{{ url_for('dreams.dreams') }}">Edit dreams</a>
-                <a href="{{ url_for('statistic.statistic') }}">Statistics</a>
-                <a href="{{ url_for('auth.logout') }}">Logout</a>
-                # if g.user.is_authenticated and g.user.is_admin()
-                <a href="{{ url_for('admin.admin') }}">Admin panel</a>
-                # endif
+                <div class="dropdown-content">
+                    <a href="{{ url_for('dreams.dreams') }}">Edit dreams</a>
+                    <a href="{{ url_for('statistic.statistic') }}">Statistics</a>
+                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                    # if g.user.is_authenticated and g.user.is_admin()
+                    <a href="{{ url_for('admin.admin') }}">Admin panel</a>
+                    # endif
+                </div>
             </div>
         </div>
-    </div>
-    <div class=page>
-          # block body
-          # endblock
+        <div class=page>
+              # block body
+              # endblock
+        </div>
+
     </div>
     <div id="footer">
         <div class="footer__desc">

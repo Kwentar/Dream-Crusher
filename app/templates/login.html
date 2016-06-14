@@ -1,13 +1,11 @@
 # extends "layout.html"
 # block body
-<body>
-    <div class="auth">
-        <div class="auth__section_logo">
-        <img src="../static/images/icons/dreams_big_logo.png">
-        </div>
-        <div class="auth__section">
-            <a href="{{url_for('auth.try_vk_auth')}}" class="auth__social_btn auth__social_btn_vk">Sing In with Vk</a>
-        </div>
+<div class="auth">
+    <div class="auth__section_logo">
+    <img src="../static/images/icons/dreams_big_logo.png">
     </div>
-</body>
+    <div class="auth__section">
+        <a href="{{url_for('auth.try_vk_auth')}}" class="auth__social_btn auth__social_btn_vk">Sing In with Vk</a>
+    </div>
+</div>
 # endblock
