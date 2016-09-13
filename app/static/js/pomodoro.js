@@ -1,6 +1,6 @@
 var count = 0;
-var work_time = 1000;
-var relax_time = 1000;
+var work_time = 25*60*1000;
+var relax_time = 5*60*1000;
 var state = 0;
 var active = false;
 var work_color = "rgba(235, 100, 84,";
