@@ -261,3 +261,28 @@ input[type="text"]:focus {
     width: 60%;
     text-align: center;
 }
+
+#timer_button {
+    background-color: var(--bg-color);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px 0 50px 100px;
+    border-color: transparent transparent transparent var(--text-color  );
+    outline:none;
+}
+
+#timer_current_count {
+    color: var(--text-color);
+    font-size: 32px;
+    padding: 0px 40px;
+}
+#timer_panel {
+    background-color: var(--bg-color);
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+}

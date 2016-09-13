@@ -2,10 +2,22 @@
 # block body
 <br/>
 # if g.user.is_authenticated
-<canvas id='timer'>Обновите браузер</canvas>
-<input id="clickMe" type="button" value="clickme" onclick="StartTimer();" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <div>
+        <select id="timer_current_dream">
+            # for dream in g.user.get_current_month().dreams
+                <option value={{dream.id_}}>{{dream.title}}</option>
+            # endfor
+        </select>
+    </div>
+    <div>
+        <canvas id='timer_canvas'>Обновите браузер</canvas>
+    </div>
+    <div id="timer_panel">
+        <label id="timer_current_count">0</label>
+        <input id="timer_button" type="button" value="Go" onclick="StartTimer();" />
+    </div>
 # endif
-<script  type="text/javascript" src="../static/js/pomodoro.js"> </script>
 # endblock
 
 
