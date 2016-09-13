@@ -18,12 +18,14 @@ from app.main_views import main_module
 from app.dreams_views import dream_module
 from app.admin_views import admin_module
 from app.statistic_views import statistic_module
+from app.pomodoro_views import pomodoro_module
 
 app.register_blueprint(auth_module)
 app.register_blueprint(dream_module)
 app.register_blueprint(main_module)
 app.register_blueprint(admin_module)
 app.register_blueprint(statistic_module)
+app.register_blueprint(pomodoro_module)
 
 
 @app.errorhandler(404)

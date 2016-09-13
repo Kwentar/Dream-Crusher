@@ -1,0 +1,11 @@
+# extends "layout.html"
+# block body
+<br/>
+# if g.user.is_authenticated
+<canvas id='timer'>Обновите браузер</canvas>
+<input id="clickMe" type="button" value="clickme" onclick="StartTimer();" />
+# endif
+<script  type="text/javascript" src="../static/js/pomodoro.js"> </script>
+# endblock
+
+

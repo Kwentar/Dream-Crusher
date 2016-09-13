@@ -8,7 +8,7 @@ import datetime
 main_module = Blueprint('main', __name__, template_folder='templates')
 
 
-@main_module.route('/')
+@main_module.route('/old')
 @login_required
 def index():
     current_month = strftime("%B", gmtime())
