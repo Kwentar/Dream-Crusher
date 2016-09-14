@@ -15,8 +15,6 @@ var count_text = 0;
 var dream_selector = 0;
 
 $(window).resize(function() {
-     canvas.height = window.innerWidth/2;
-    canvas.width = window.innerWidth/2;
     InitCanvasSize();
     DrawEmptyCircle(canvas.width);
 });
@@ -40,9 +38,10 @@ $(document).ready(function() {
 });
 
 function InitCanvasSize() {
-    var max_size = 800;
-    if(window.innerWidth < max_size) {
-        max_size = window.innerWidth;
+    var max_size = 1000;
+    var min_side = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight;
+    if(min_side < max_size) {
+        max_size = min_side;
     }
     canvas.height = max_size * 0.7;
     canvas.width = max_size * 0.7;
@@ -55,13 +54,13 @@ function DrawEmptyCircle(width)
     var watch_center_w = width/2;
     var watch_center_h = width/2; // not copypaste
     ctx.fillStyle = '#171717';
-    ctx.arc(watch_center_w, watch_center_h, 0.35 * width, 0, 2 * Math.PI, true);
+    ctx.arc(watch_center_w, watch_center_h, 0.4 * width, 0, 2 * Math.PI, true);
     ctx.fill();
 
     ctx.beginPath();
     ctx.fillStyle = "#DDDDE2";
-    ctx.arc(watch_center_w, watch_center_h, 0.40 * width, Math.PI * 2, 0, false);
-    ctx.arc(watch_center_w, watch_center_h, 0.3 * width, 0, Math.PI * 2, true);
+    ctx.arc(watch_center_w, watch_center_h, 0.45 * width, Math.PI * 2, 0, false);
+    ctx.arc(watch_center_w, watch_center_h, 0.35 * width, 0, Math.PI * 2, true);
     ctx.fill();
 }
 function StartTimer() {
